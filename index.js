@@ -8,11 +8,18 @@ for (var i = 0; i < numberOfButtons; i++){
   document.querySelectorAll(".drum")[i].addEventListener("click", function(event){
 
     makeSound(event.path[0].innerHTML);
+
+    buttonAnimation(event.path[0].innerHTML);
+
   })
 }
 //Now we create a function which will output the key pressed into makeSound(key) function.
-document.addEventListener("keydown", function(event){
-  makeSound(event.key);
+  document.addEventListener("keydown", function(evt){
+
+    makeSound(evt.key);
+
+    buttonAnimation(evt.key);
+
 })
 
 
@@ -58,4 +65,18 @@ function makeSound(key) {
 
     default: console.log(key);
  }
+}
+
+
+
+function buttonAnimation(currentKey){
+
+  var activeButton = document.querySelector("." + currentKey);
+
+  activeButton.classList.add("pressed");
+
+  setTimeout(function(){
+    activeButton.classList.remove("pressed");
+  }, 100);
+
 }
